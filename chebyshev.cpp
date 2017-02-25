@@ -10,8 +10,8 @@ int main(){
 cout.precision(4);        //set the precision , 4 places of decimal
 cout.setf(ios::fixed); 
 
-double x;
-int n;
+double x,y,first,second,fn;
+int n,i;
 cout<<"Enter initial guess : ";
 cin>>x;
 cout<<"Enter number of iterations : ";
@@ -21,10 +21,20 @@ if(n<0){
 	return 0;
 }
 
-cout<<"fn :"<<function(x);
-cout<<"\n1st :"<<first_deri(x);
-cout<<"\n2nd :"<<second_deri(x);
+y=x;
+for(i=0;i<n;i++){
+	cout<<"\n#iteration "<<i+1;
+	fn = function(y);
+	first = first_deri(y);
+	second = second_deri(y);
+	
+	y = y - (fn/first) - 0.5*(pow(fn,2)*second/pow(first,3));
+	cout<<"\n	function value : "<<fn<<" Xn+1: "<<y;	
+}
 
+
+cout<<"\n\nRoot: "<<y;
+cout<<"\nerror: "<<0-fn<<"\n";
 
 return 0;
 }
